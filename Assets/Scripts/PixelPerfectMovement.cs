@@ -8,27 +8,35 @@ public class PixelPerfectMovement : MonoBehaviour
     private float playerSpeed = 2.0f;
     public PixelCameraBehavior pixelCameraBehavior;
     private Camera renderCamera;
+    public float pixelSize;
 
     private void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
         renderCamera = pixelCameraBehavior.renderCamera;
+        
     }
 
     void Update()
     {
-        if (pixelCameraBehavior.pixelSize != 0)
+        if(pixelSize == 0)
         {
-            float pixelSize = pixelCameraBehavior.pixelSize;
+            pixelSize = pixelCameraBehavior.pixelSize;
+        }
+        else
+        {
             Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-            Vector3 worldDelta = move * Time.deltaTime * playerSpeed;
-            Vector3 localDelta = renderCamera.transform.InverseTransformDirection(worldDelta) / pixelSize;
+            controller.Move(move * Time.deltaTime * playerSpeed);
 
-            localDelta.x = Mathf.RoundToInt(localDelta.x);
-            localDelta.y = Mathf.RoundToInt(localDelta.y);
-            localDelta.z = Mathf.RoundToInt(localDelta.z);
+            Vector3 currentPosition = transform.position;
 
-            controller.Move(localDelta*pixelSize);
+            float snappedX = Mathf.RoundToInt(currentPosition.x / pixelSize) * pixelSize;
+            float snappedY = Mathf.RoundToInt(currentPosition.y / pixelSize) * pixelSize;
+            float snappedZ = Mathf.RoundToInt(currentPosition.z / pixelSize) * pixelSize;
+
+            Vector3 snappedPosition = new Vector3(snappedX,snappedY,snappedZ);
+
+            transform.position = snappedPosition;
 
             if (move != Vector3.zero)
             {

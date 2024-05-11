@@ -23,8 +23,12 @@ Material:
   m_Name: Red
   m_Shader: {fileID: -6465566751694194690, guid: 667b179c3e7d59040bbab36ecf344e33,
     type: 3}
-  m_ValidKeywords: []
-  m_InvalidKeywords: []
+  m_ValidKeywords:
+  - _MAIN_LIGHT_CALCULATE_SHADOWS
+  - _MAIN_LIGHT_SHADOWS_CASCADE
+  - _SHADOWS_SOFT
+  m_InvalidKeywords:
+  - REQUIRE_DEPTH_TEXTURE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -96,6 +100,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - REQUIRE_DEPTH_TEXTURE: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -103,6 +108,9 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
+    - _DepthStrength: 0
+    - _DepthThickness: 0
+    - _DepthThreshold: 0
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
@@ -110,32 +118,37 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
-    - _Max_Brightness: 1
+    - _MAIN_LIGHT_CALCULATE_SHADOWS: 1
+    - _MAIN_LIGHT_SHADOWS_CASCADE: 1
+    - _Max_Brightness: 0.81
     - _Metallic: 0
-    - _Min_Brightness: 0
+    - _Min_Brightness: 0.08
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: -3
     - _ReceiveShadows: 1
+    - _SHADOWS_SOFT: 1
     - _Shade_Division: 3.91
-    - _Shade_Size: 4.1
+    - _Shade_Size: 3
     - _Shades: 0.28
-    - _Smoothness: 0.5
+    - _Smoothness: 8.04
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _Surface: 0
+    - _Thickness: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _Ambient_Color: {r: 0, g: 0, b: 0, a: 0.32156864}
+    - _Ambient_Color: {r: 0.25290135, g: 0.26294878, b: 0.6981132, a: 0.8509804}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.7924528, g: 0.31905138, b: 0.27960128, a: 1}
+    - _Color: {r: 1, g: 0, b: 0, a: 0.6313726}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 1, g: 1, b: 1, a: 0}
     - _L1_direction: {r: 0, g: 0, b: 0, a: 0}
     - _LightDirection: {r: 0, g: 0, b: 0, a: 0}
+    - _OutlineColor: {r: 0, g: 0, b: 0, a: 0}
     - _Shadow_Color: {r: 0.12587343, g: 0, b: 0.533, a: 0.5411765}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _color: {r: 1, g: 0.16140312, b: 0.15294117, a: 0}

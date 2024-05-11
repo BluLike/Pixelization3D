@@ -21,9 +21,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Blue
-  m_Shader: {fileID: -6465566751694194690, guid: 07e0feb7b479c4f4ea2799cf0e220847,
+  m_Shader: {fileID: -6465566751694194690, guid: 667b179c3e7d59040bbab36ecf344e33,
     type: 3}
-  m_ValidKeywords: []
+  m_ValidKeywords:
+  - _MAIN_LIGHT_CALCULATE_SHADOWS
+  - _MAIN_LIGHT_SHADOWS_CASCADE
+  - _SHADOWS_SOFT
   m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -110,6 +113,8 @@ Material:
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _MAIN_LIGHT_CALCULATE_SHADOWS: 1
+    - _MAIN_LIGHT_SHADOWS_CASCADE: 1
     - _Max_Brightness: 2.99
     - _Metallic: 0
     - _Min_Brightness: 0.12
@@ -118,7 +123,9 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: -3
     - _ReceiveShadows: 1
+    - _SHADOWS_SOFT: 1
     - _Shade_Division: 3.05
+    - _Shade_Size: 4
     - _Shades: 0.18
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
@@ -129,12 +136,12 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0.2117647, g: 0.24797316, b: 1, a: 1}
+    - _Color: {r: 0.27554289, g: 0.81702805, b: 0.8490566, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _L1_color: {r: 1, g: 1, b: 1, a: 0}
     - _L1_direction: {r: 0, g: 0, b: 0, a: 0}
     - _LightDirection: {r: 0, g: 0, b: 0, a: 0}
-    - _Shadow_Color: {r: 0.013655696, g: 0.13655695, b: 0.08193418, a: 0}
+    - _Shadow_Color: {r: 0.096775934, g: 0.5294118, b: 0.047058824, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _color: {r: 0.14158057, g: 0.15532835, b: 0.9150943, a: 0}
   m_BuildTextureStacks: []
