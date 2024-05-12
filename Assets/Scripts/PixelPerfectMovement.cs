@@ -29,13 +29,14 @@ public class PixelPerfectMovement : MonoBehaviour
             controller.Move(move * Time.deltaTime * playerSpeed);
 
             Vector3 currentPosition = transform.position;
+            Vector3 camLocalcurrentPos = renderCamera.transform.InverseTransformPoint(currentPosition);
+            float snappedX = Mathf.RoundToInt(camLocalcurrentPos.x / pixelSize) * pixelSize;
+            float snappedY = Mathf.RoundToInt(camLocalcurrentPos.y / pixelSize) * pixelSize;
+            float snappedZ = Mathf.RoundToInt(camLocalcurrentPos.z / pixelSize) * pixelSize;
 
-            float snappedX = Mathf.RoundToInt(currentPosition.x / pixelSize) * pixelSize;
-            float snappedY = Mathf.RoundToInt(currentPosition.y / pixelSize) * pixelSize;
-            float snappedZ = Mathf.RoundToInt(currentPosition.z / pixelSize) * pixelSize;
+            Vector3 localSnappedPosition = new Vector3(snappedX,snappedY,snappedZ);
 
-            Vector3 snappedPosition = new Vector3(snappedX,snappedY,snappedZ);
-
+            Vector3 snappedPosition = renderCamera.transform.TransformPoint(localSnappedPosition);
             transform.position = snappedPosition;
 
             if (move != Vector3.zero)
