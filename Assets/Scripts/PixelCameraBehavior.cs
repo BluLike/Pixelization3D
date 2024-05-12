@@ -7,10 +7,10 @@ public class PixelCameraBehavior : MonoBehaviour
     //public GameObject renderPlane;
 
     public Camera renderCamera;
+    public Camera outputCamera;
     public Texture pixelizationTexture;
     public float pixelSize;
-    public GameObject player;
-    private Vector3 targetPosition;
+    public GameObject follow;
     private Vector3 camDistance; 
 
 
@@ -18,31 +18,38 @@ public class PixelCameraBehavior : MonoBehaviour
     void Start()
     {
         TexelGrid();
-        camDistance = transform.position - player.transform.position;
+        camDistance = transform.position - follow.transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
+        outputCamera.transform.position = transform.position;
         // Estas funciones sirven para que la cámara siga al jugador y obtener un delta que le dice a la cámara hacia dónde moverse de su posición inicial
-
-        Vector3 worldDelta = (player.transform.position + camDistance) - transform.position; 
+        Vector3 targetPosition = follow.transform.position + camDistance;
+        Vector3 worldDelta = targetPosition - transform.position; 
              
         //Esto transforma el delta en las coordenadas del mundo a las coordenadas locales de la cámara (teniendo en cuenta la rotación que tiene)
         //y lo divide por el tamaño del píxel 
-        Vector3 localDelta = transform.InverseTransformDirection(worldDelta) / pixelSize;
+        Vector3 localDelta = transform.InverseTransformDirection(worldDelta);
 
+        Vector3 snappedPos;
         //Despues de dividirlo, se aproxima y de esa manera, la cámara se "snapea" a los píxeles 
-        localDelta.x = Mathf.RoundToInt(localDelta.x);
-        localDelta.y = Mathf.RoundToInt(localDelta.y);
-        localDelta.z = Mathf.RoundToInt(localDelta.z);
+        snappedPos.x = Mathf.RoundToInt(localDelta.x / pixelSize) * pixelSize;
+        snappedPos.y = Mathf.RoundToInt(localDelta.y / pixelSize) * pixelSize;
+        snappedPos.z = Mathf.RoundToInt(localDelta.z / pixelSize) * pixelSize;
 
         //Aqui símplemente se aplica el snapeo a los píxeles en el movimiento en los ejes de la cámara
         transform.position +=
-        transform.right * localDelta.x * pixelSize
-        + transform.up * localDelta.y * pixelSize
-        + transform.forward * localDelta.z * pixelSize;
+        transform.right * snappedPos.x
+        + transform.up * snappedPos.y
+        + transform.forward * snappedPos.z;
+        
+        Vector3 finalPosition = transform.position;
 
+        Vector3 offset = new Vector3(finalPosition.x - targetPosition.x, finalPosition.y - targetPosition.y, 0);
+
+        outputCamera.transform.position -= offset;
     }
 
     void TexelGrid()

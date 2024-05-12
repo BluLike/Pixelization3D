@@ -5,10 +5,11 @@ using UnityEngine;
 public class PixelPerfectMovement : MonoBehaviour
 {
     private CharacterController controller;
-    private float playerSpeed = 2.0f;
+    public float playerSpeed = 2.0f;
     public PixelCameraBehavior pixelCameraBehavior;
     private Camera renderCamera;
     public float pixelSize;
+    private Vector3 preSnapPos;
 
     private void Start()
     {
@@ -29,6 +30,7 @@ public class PixelPerfectMovement : MonoBehaviour
             controller.Move(move * Time.deltaTime * playerSpeed);
 
             Vector3 currentPosition = transform.position;
+            preSnapPos = currentPosition;
             Vector3 camLocalcurrentPos = renderCamera.transform.InverseTransformPoint(currentPosition);
             float snappedX = Mathf.RoundToInt(camLocalcurrentPos.x / pixelSize) * pixelSize;
             float snappedY = Mathf.RoundToInt(camLocalcurrentPos.y / pixelSize) * pixelSize;
@@ -44,5 +46,9 @@ public class PixelPerfectMovement : MonoBehaviour
                 gameObject.transform.forward = move;
             }
         }
+    }
+    private void OnPostRender()
+    {
+        transform.position = preSnapPos;
     }
 }

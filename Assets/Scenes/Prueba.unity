@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 186727228}
   - component: {fileID: 186727227}
   - component: {fileID: 186727231}
+  - component: {fileID: 186727233}
   - component: {fileID: 186727232}
   m_Layer: 0
   m_Name: Capsule
@@ -218,7 +219,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 186727226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.33678567, y: 1.057, z: -0.51347876}
+  m_LocalPosition: {x: 0.5, y: 1.057, z: -4.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -255,8 +256,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faf1de51b6dd5f8488b15115cdddf797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeed: 2
   pixelCameraBehavior: {fileID: 786255321}
   pixelSize: 0
+--- !u!114 &186727233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 186727226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be5916ad8e63479418a60d46cd92373d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSpeed: 2
 --- !u!1 &369987670
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,6 +594,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!20 &1501100862 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5488867222078091976, guid: fad7700b24799994aa9cc9d1f4cd89c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 5488867221280320940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1534299461
 GameObject:
   m_ObjectHideFlags: 0
@@ -806,9 +827,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
+      propertyPath: follow
+      value: 
+      objectReference: {fileID: 186727226}
+    - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 186727226}
+    - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
+      propertyPath: outputCamera
+      value: 
+      objectReference: {fileID: 1501100862}
     - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
       propertyPath: renderCamera
       value: 
@@ -817,6 +846,11 @@ PrefabInstance:
       propertyPath: pixelizationTexture
       value: 
       objectReference: {fileID: 8400000, guid: ff0a7c5def2e487429ccd0cbc242656b, type: 2}
+    - target: {fileID: 5488867222078091977, guid: fad7700b24799994aa9cc9d1f4cd89c2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5488867222251123232, guid: fad7700b24799994aa9cc9d1f4cd89c2,
         type: 3}
       propertyPath: m_Name
@@ -876,6 +910,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5488867223145891963, guid: fad7700b24799994aa9cc9d1f4cd89c2,
+        type: 3}
+      propertyPath: orthographic size
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}

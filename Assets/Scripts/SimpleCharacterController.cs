@@ -5,8 +5,7 @@ using UnityEngine;
 public class SimpleCharacterController : MonoBehaviour
 {
     private CharacterController controller;
-    private Vector3 playerVelocity;
-    private float playerSpeed = 2.0f;
+    public float playerSpeed = 4.0f;
 
     private void Start()
     {
