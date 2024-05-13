@@ -9,21 +9,32 @@ public class PixelCameraBehavior : MonoBehaviour
     public Camera renderCamera;
     public Camera outputCamera;
     public Texture pixelizationTexture;
+    [Range(1f, 7f)]
+    public int pixelizationFactor = 1;
     public float pixelSize;
     public GameObject follow;
-    private Vector3 camDistance; 
+    private Vector3 camDistance;
+    private Quaternion camRotation;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        pixelizationTexture.width = 1920 / pixelizationFactor;
+        pixelizationTexture.height = 1080 / pixelizationFactor;
         TexelGrid();
         camDistance = transform.position - follow.transform.position;
+        camRotation = transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(transform.rotation != camRotation)
+        {
+            camRotation = transform.rotation;
+            TexelGrid();
+        }
         outputCamera.transform.position = transform.position;
         // Estas funciones sirven para que la cámara siga al jugador y obtener un delta que le dice a la cámara hacia dónde moverse de su posición inicial
         Vector3 targetPosition = follow.transform.position + camDistance;
