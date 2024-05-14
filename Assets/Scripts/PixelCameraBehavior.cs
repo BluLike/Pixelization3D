@@ -17,32 +17,33 @@ public class PixelCameraBehavior : MonoBehaviour
     private Quaternion camRotation;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         pixelizationTexture.width = 1920 / pixelizationFactor;
         pixelizationTexture.height = 1080 / pixelizationFactor;
         TexelGrid();
-        camDistance = transform.position - follow.transform.position;
-        camRotation = transform.rotation;
+        camDistance = renderCamera.transform.position - follow.transform.position;
+        camRotation = renderCamera.transform.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.rotation != camRotation)
+        if(renderCamera.transform.rotation != camRotation)
         {
-            camRotation = transform.rotation;
+            camRotation = renderCamera.transform.rotation;
             TexelGrid();
         }
-        outputCamera.transform.position = transform.position;
+        outputCamera.transform.position = renderCamera.transform.position;
         // Estas funciones sirven para que la cámara siga al jugador y obtener un delta que le dice a la cámara hacia dónde moverse de su posición inicial
         Vector3 targetPosition = follow.transform.position + camDistance;
-        Vector3 worldDelta = targetPosition - transform.position; 
+        Vector3 worldDelta = targetPosition - renderCamera.transform.position; 
              
         //Esto transforma el delta en las coordenadas del mundo a las coordenadas locales de la cámara (teniendo en cuenta la rotación que tiene)
         //y lo divide por el tamaño del píxel 
-        Vector3 localDelta = transform.InverseTransformDirection(worldDelta);
+        Vector3 localDelta = renderCamera.transform.InverseTransformDirection(worldDelta);
 
         Vector3 snappedPos;
         //Despues de dividirlo, se aproxima y de esa manera, la cámara se "snapea" a los píxeles 
@@ -51,12 +52,12 @@ public class PixelCameraBehavior : MonoBehaviour
         snappedPos.z = Mathf.RoundToInt(localDelta.z / pixelSize) * pixelSize;
 
         //Aqui símplemente se aplica el snapeo a los píxeles en el movimiento en los ejes de la cámara
-        transform.position +=
-        transform.right * snappedPos.x
-        + transform.up * snappedPos.y
-        + transform.forward * snappedPos.z;
+        renderCamera.transform.position +=
+        renderCamera.transform.right * snappedPos.x
+        + renderCamera.transform.up * snappedPos.y
+        + renderCamera.transform.forward * snappedPos.z;
         
-        Vector3 finalPosition = transform.position;
+        Vector3 finalPosition = renderCamera.transform.position;
 
         Vector3 offset = new Vector3(finalPosition.x - targetPosition.x, finalPosition.y - targetPosition.y, 0);
 
