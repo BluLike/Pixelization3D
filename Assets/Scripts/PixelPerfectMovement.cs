@@ -13,28 +13,56 @@ public class PixelPerfectMovement : MonoBehaviour
     public Vector3 camLocalcurrentPos;
     public Vector3 localSnappedPosition;
     public Vector3 snappedPosition;
+    private bool rotating;
+    private Animator animator;
 
     private void Start()
     {
+        rotating = pixelCameraBehavior.rotating;
         renderCamera = pixelCameraBehavior.renderCamera;
         preSnapPos = transform.position;
         controller = GetComponent<CharacterController>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        transform.position = preSnapPos;
+        //transform.position = preSnapPos;
 
         if(pixelSize == 0)
         {
             pixelSize = pixelCameraBehavior.pixelSize;
         }
-        Vector3 direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        float horizontal = Input.GetAxisRaw("Horizontal");
+        float vertical = Input.GetAxisRaw("Vertical");
+        Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
-        float velocity = playerSpeed * (pixelSize*100);
-        controller.Move(direction * Time.deltaTime * velocity);
+        if (direction.magnitude >= 0.1f)
+        {
+            animator.SetBool("running", true);
+            // Obtiene la dirección de la cámara
+            Vector3 camForward = renderCamera.transform.forward;
+            Vector3 camRight = renderCamera.transform.right;
 
-       
+            // Ignora la rotación en el eje Y de la cámara
+            camForward.y = 0;
+            camRight.y = 0;
+            camForward = camForward.normalized;
+            camRight = camRight.normalized;
+
+            // Transforma la dirección del movimiento a la dirección de la cámara
+            direction = camForward * direction.z + camRight * direction.x;
+
+            transform.forward = direction;
+            // Mueve al jugador en la dirección transformada
+            controller.Move(direction * (playerSpeed*pixelSize*100) * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("running", false);
+        }
+
+
 
         Vector3 currentPosition = transform.position;
 
