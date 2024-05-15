@@ -15,6 +15,8 @@ public class PixelPerfectMovement : MonoBehaviour
     public Vector3 snappedPosition;
     private bool rotating;
     private Animator animator;
+    Vector3 velocity;
+    public float gravity = 9.8f;
 
     private void Start()
     {
@@ -56,6 +58,11 @@ public class PixelPerfectMovement : MonoBehaviour
             transform.forward = direction;
             // Mueve al jugador en la dirección transformada
             controller.Move(direction * (playerSpeed*pixelSize*100) * Time.deltaTime);
+
+            
+            velocity.y += -gravity * Time.deltaTime;
+
+            controller.Move(velocity * Time.deltaTime);
         }
         else
         {
