@@ -176,17 +176,17 @@ PrefabInstance:
     - target: {fileID: 3615813628959939255, guid: 512a78e3c7342504ca0c5bba586249f5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 19.061308
+      value: 2.15
       objectReference: {fileID: 0}
     - target: {fileID: 3615813628959939255, guid: 512a78e3c7342504ca0c5bba586249f5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.22592545
+      value: 0.14
       objectReference: {fileID: 0}
     - target: {fileID: 3615813628959939255, guid: 512a78e3c7342504ca0c5bba586249f5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 96.78465
+      value: 4.43
       objectReference: {fileID: 0}
     - target: {fileID: 3615813628959939255, guid: 512a78e3c7342504ca0c5bba586249f5,
         type: 3}
@@ -644,6 +644,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2641834999717457372, guid: 943da933e3a4e1648807701c43315849,
+        type: 3}
+      propertyPath: pixelCameraBehavior
+      value: 
+      objectReference: {fileID: 1117487532}
     - target: {fileID: 4768989496523462862, guid: 943da933e3a4e1648807701c43315849,
         type: 3}
       propertyPath: playerSpeed
@@ -878,7 +883,7 @@ PrefabInstance:
       objectReference: {fileID: 2056722997}
     - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
       propertyPath: pixelizationFactor
-      value: 7
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
       propertyPath: pixelizationTexture

@@ -22,8 +22,8 @@ void CalculateMainLight_float(float3 WorldPos, out float3 Direction, out float3 
 #endif
 }
 
- void AdditionalLights_float(float3 WorldPosition, float3 WorldNormal, float3 WorldView, float MainDiffuse,
-	 float3 MainColor, out float Diffuse, out float3 Color) {
+ void AdditionalLights_float(float3 WorldPosition, float3 WorldNormal, float MainDiffuse,
+	 float3 MainColor, out float3 Color , out float Diffuse) {
 	 Diffuse = MainDiffuse;
 	 Color = MainColor * MainDiffuse;
 #ifndef SHADERGRAPH_PREVIEW

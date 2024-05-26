@@ -653,7 +653,7 @@ GameObject:
   - component: {fileID: 5018245643704075593}
   - component: {fileID: 1388321479738777395}
   - component: {fileID: 4768989496523462857}
-  - component: {fileID: 4768989496523462862}
+  - component: {fileID: 2641834999717457372}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -716,7 +716,7 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0.25, y: 6.25, z: 0}
---- !u!114 &4768989496523462862
+--- !u!114 &2641834999717457372
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -725,16 +725,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5687962215220666355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: faf1de51b6dd5f8488b15115cdddf797, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d7d5c9a7606fa94e948755550f2ba95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 4
+  playerSpeed: 1
   pixelCameraBehavior: {fileID: 0}
   pixelSize: 0
   preSnapPos: {x: 0, y: 0, z: 0}
   camLocalcurrentPos: {x: 0, y: 0, z: 0}
   localSnappedPosition: {x: 0, y: 0, z: 0}
   snappedPosition: {x: 0, y: 0, z: 0}
+  gravity: 9.8
 --- !u!1 &5701278573780602795
 GameObject:
   m_ObjectHideFlags: 0

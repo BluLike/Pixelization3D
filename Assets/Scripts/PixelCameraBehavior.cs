@@ -9,27 +9,36 @@ public class PixelCameraBehavior : MonoBehaviour
     public Camera renderCamera;
     public Camera outputCamera;
     public Texture pixelizationTexture;
+
+    //El dividendo de la textura de pixelización
     [Range(1f, 7f)]
     public int pixelizationFactor = 1;
-    public float pixelSize;
-    public GameObject follow;
-    private Vector3 camDistance;
-    private Quaternion camRotation;
-    public bool rotating = false;
 
-    public Vector3 currentPos;
-    public Vector3 newPos = Vector3.zero;
-    public Vector3 movingPos;
-    public float camSpeed = 1;
-    public float lerpTime = 0;
+    //La proporción pixel/unidad
+    public float pixelSize;
+
+    //Para seguir al jugador
+    public GameObject follow;
+
+    //Para mantener fija la distancia de la cámara al jugador
+    private Vector3 camDistance;
+    //Si este valor cambia, se debe rehacer la red texel
+    private Quaternion camRotation;
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        //Se cambia el tamaño proporcionalmente de la textura de pixelización
         pixelizationTexture.width = 1920 / pixelizationFactor;
         pixelizationTexture.height = 1080 / pixelizationFactor;
+
+        //Se crea la red texel
         TexelGrid();
+
+        
         camDistance = transform.position - follow.transform.position;
         camRotation = transform.rotation;
     }
@@ -37,23 +46,29 @@ public class PixelCameraBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (rotating || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
+            //Rotar a la derecha
             RotateRight();
         }
-        else if (rotating || Input.GetKeyDown(KeyCode.Q))
+        else if (Input.GetKeyDown(KeyCode.Q))
         {
+            //Rotar a la izquierda
             RotateLeft();
         }
         else
          {
+            //Si se cambia la rotación, se rehace la red texel
              if (transform.rotation != camRotation)
              {
                  camDistance = transform.position - follow.transform.position;
                  camRotation = transform.rotation;
                  TexelGrid();
              }
+
+             //Outputcamera se reestablece a su posición
              outputCamera.transform.position = transform.position;
+
              // Estas funciones sirven para que la cámara siga al jugador y obtener un delta que le dice a la cámara hacia dónde moverse de su posición inicial
              Vector3 targetPosition = follow.transform.position + camDistance;
              Vector3 worldDelta = targetPosition - transform.position;
@@ -61,9 +76,10 @@ public class PixelCameraBehavior : MonoBehaviour
              //Esto transforma el delta en las coordenadas del mundo a las coordenadas locales de la cámara (teniendo en cuenta la rotación que tiene)
              //y lo divide por el tamaño del píxel 
              Vector3 localDelta = transform.InverseTransformDirection(worldDelta);
-
-             Vector3 snappedPos;
-             //Despues de dividirlo, se aproxima y de esa manera, la cámara se "snapea" a los píxeles 
+            
+            
+            //Despues de dividirlo, se aproxima y de esa manera, la cámara se "snapea" a los píxeles 
+            Vector3 snappedPos; 
              snappedPos.x = Mathf.RoundToInt(localDelta.x / pixelSize) * pixelSize;
              snappedPos.y = Mathf.RoundToInt(localDelta.y / pixelSize) * pixelSize;
              snappedPos.z = Mathf.RoundToInt(localDelta.z / pixelSize) * pixelSize;
@@ -74,10 +90,11 @@ public class PixelCameraBehavior : MonoBehaviour
              + transform.up * snappedPos.y
              + transform.forward * snappedPos.z;
 
+            //Se registra la posición final de la cámara
              Vector3 finalPosition = transform.position;
 
+            //Se resta a la output camera el opuesto del movimiento que hace la rendercamera
              Vector3 offset = new Vector3(finalPosition.x - targetPosition.x, finalPosition.y - targetPosition.y, 0);
-
              outputCamera.transform.position -= offset;
          }
     }

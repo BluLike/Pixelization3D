@@ -4,87 +4,73 @@ using UnityEngine;
 
 public class PixelPerfectMovement : MonoBehaviour
 {
-    public float playerSpeed = 4.0f;
-    public PixelCameraBehavior pixelCameraBehavior;
+    //Velocidad del jugador
+    public float playerSpeed = 1f;
+
+    //Script de la cámara
+    public PixelCameraBehavior1 pixelCameraBehavior1;
     private Camera renderCamera;
     public float pixelSize;
-    public Vector3 preSnapPos;
-    private CharacterController controller;
-    public Vector3 camLocalcurrentPos;
-    public Vector3 localSnappedPosition;
-    public Vector3 snappedPosition;
-    private bool rotating;
-    private Animator animator;
-    Vector3 velocity;
-    public float gravity = 9.8f;
 
+    private CharacterController controller;
+
+    //Constant gravitacional y velocidad de caída
+    public float gravity = 9.8f;
+    private Vector3 velocity;
+
+
+    Vector3 camLocalcurrentPos;
+    Vector3 localSnappedPosition;
+    Vector3 snappedPosition;
     private void Start()
     {
-        rotating = pixelCameraBehavior.rotating;
-        renderCamera = pixelCameraBehavior.renderCamera;
-        preSnapPos = transform.position;
+        renderCamera = pixelCameraBehavior1.renderCamera;
         controller = GetComponent<CharacterController>();
-        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
-        //transform.position = preSnapPos;
-
+        //Se asegura de que el PixelSize se ha asignado
         if(pixelSize == 0)
         {
-            pixelSize = pixelCameraBehavior.pixelSize;
+            pixelSize = pixelCameraBehavior1.pixelSize;
         }
+
+        //Se halla la dirección usando los ejes internos de unity
         float horizontal = Input.GetAxisRaw("Horizontal");
         float vertical = Input.GetAxisRaw("Vertical");
         Vector3 direction = new Vector3(horizontal, 0f, vertical).normalized;
 
         if (direction.magnitude >= 0.1f)
         {
-            animator.SetBool("running", true);
-            // Obtiene la dirección de la cámara
-            Vector3 camForward = renderCamera.transform.forward;
-            Vector3 camRight = renderCamera.transform.right;
-
-            // Ignora la rotación en el eje Y de la cámara
-            camForward.y = 0;
-            camRight.y = 0;
-            camForward = camForward.normalized;
-            camRight = camRight.normalized;
-
-            // Transforma la dirección del movimiento a la dirección de la cámara
-            direction = camForward * direction.z + camRight * direction.x;
-
+            //Se rota al jugador a la dirección que desea
             transform.forward = direction;
-            // Mueve al jugador en la dirección transformada
+
+            // Mueve al jugador en la dirección transformada. 
+            //Se multiplica la velocidad por el pixelSize y por 100 para evitar que el jugador se mueva menos de un píxel y se quede atrapado por el snapping
             controller.Move(direction * (playerSpeed*pixelSize*100) * Time.deltaTime);
 
-            
+            //Se le da gravedad al jugador
             velocity.y += -gravity * Time.deltaTime;
 
             controller.Move(velocity * Time.deltaTime);
         }
-        else
-        {
-            animator.SetBool("running", false);
-        }
-
 
 
         Vector3 currentPosition = transform.position;
 
-            preSnapPos = currentPosition;            
+        //Se convierte la posición del jugador al eje local de la cámara
+         camLocalcurrentPos = renderCamera.transform.InverseTransformPoint(currentPosition);
 
-            camLocalcurrentPos = renderCamera.transform.InverseTransformPoint(currentPosition);
-
-            
+            //Se calcula el snapeo
             float snappedX = Mathf.RoundToInt(camLocalcurrentPos.x / pixelSize) * pixelSize;
             float snappedY = Mathf.RoundToInt(camLocalcurrentPos.y / pixelSize) * pixelSize;
             float snappedZ = Mathf.RoundToInt(camLocalcurrentPos.z / pixelSize) * pixelSize;
 
-            localSnappedPosition = new Vector3(snappedX,snappedY,snappedZ);
+         localSnappedPosition = new Vector3(snappedX,snappedY,snappedZ);
 
-            snappedPosition = renderCamera.transform.TransformPoint(localSnappedPosition);
+        //Se reconvierte a global la posición de snapeo y se aplica
+         snappedPosition = renderCamera.transform.TransformPoint(localSnappedPosition);
             transform.position = snappedPosition;
     }
 }
