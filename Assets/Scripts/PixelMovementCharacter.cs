@@ -60,18 +60,15 @@ public class PixelMovementCharacter : MonoBehaviour
                 transform.forward = direction;
                 // Mueve al jugador en la dirección transformada
                 controller.Move(direction * (playerSpeed * pixelSize * 100) * Time.deltaTime);
-
-
-                velocity.y += -gravity * Time.deltaTime;
-
-                controller.Move(velocity * Time.deltaTime);
             }
             else
             {
                 animator.SetBool("running", false);
             }
 
+            velocity.y += -gravity * Time.deltaTime;
 
+            controller.Move(velocity * Time.deltaTime);
 
             Vector3 currentPosition = transform.position;
 
