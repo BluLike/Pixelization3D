@@ -817,19 +817,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2641834999717457372, guid: 943da933e3a4e1648807701c43315849,
         type: 3}
-      propertyPath: playerSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2641834999717457372, guid: 943da933e3a4e1648807701c43315849,
-        type: 3}
       propertyPath: pixelCameraBehavior
       value: 
       objectReference: {fileID: 308266599}
-    - target: {fileID: 5018245643704075593, guid: 943da933e3a4e1648807701c43315849,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5018245643704075593, guid: 943da933e3a4e1648807701c43315849,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -902,29 +892,10 @@ PrefabInstance:
       propertyPath: follow
       value: 
       objectReference: {fileID: 1359367477}
-    - target: {fileID: 1176690574, guid: fad7700b24799994aa9cc9d1f4cd89c2, type: 3}
-      propertyPath: pixelizationFactor
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867222078091976, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867222078091982, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_RequiresDepthTextureOption
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5488867222251123232, guid: fad7700b24799994aa9cc9d1f4cd89c2,
         type: 3}
       propertyPath: m_Name
       value: PixelCamera Rig
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867222251123233, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5488867222251123233, guid: fad7700b24799994aa9cc9d1f4cd89c2,
         type: 3}
@@ -975,36 +946,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867222475658081, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867222475658086, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867223145891957, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_RendererIndex
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867223145891957, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: m_RenderPostProcessing
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867223145891963, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: far clip plane
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5488867223145891963, guid: fad7700b24799994aa9cc9d1f4cd89c2,
-        type: 3}
-      propertyPath: orthographic size
-      value: 7.93
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
