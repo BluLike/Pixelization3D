@@ -45,9 +45,9 @@ Material:
     - _Edge_Threshold: 1.86
     - _Normal_Threshold: 1.13
     - _OVERLAY: 1
-    - _Outline_Opacity: 1
+    - _Outline_Opacity: 0
     - _Outline_Threshold: 0.01
     m_Colors:
     - _Edge_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Outline_Color: {r: 0.08265575, g: 0.09046191, b: 0.17735851, a: 1}
   m_BuildTextureStacks: []
