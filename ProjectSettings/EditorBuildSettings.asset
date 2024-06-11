@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Bosque.unity
     guid: c77df676ada9a4a43988af0c01400426
+  - enabled: 1
+    path: Assets/Scenes/Hogar.unity
+    guid: af1bc19bd7942de499f65fdba399e81c
   m_configObjects: {}

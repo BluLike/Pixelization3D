@@ -10,7 +10,8 @@ public class PostProcessManagerScript : MonoBehaviour
     public Color edgeColor = Color.white;
     [Range(0f, 1f)]
     public float edgeOpacity = 0f;
-    public bool color = false;
+    public bool colorEdges = false;
+    public bool enableEdges = true;
 
     public Material Outline;
     [Range(0.01f, 10f)]
@@ -18,6 +19,7 @@ public class PostProcessManagerScript : MonoBehaviour
     public Color outlineColor = Color.black;
     [Range(0f,1f)]
     public float outlineOpacity = 0f;
+    public bool enableOutlines = true;
 
     // Start is called before the first frame update
     void Start()
@@ -26,12 +28,18 @@ public class PostProcessManagerScript : MonoBehaviour
         Edge.SetColor("_Edge_Color", edgeColor);
         Edge.SetFloat("_Edge_Opacity", edgeOpacity);
 
-        if (color) Edge.EnableKeyword("_COLOR");
+        if (colorEdges) Edge.EnableKeyword("_COLOR");
         else Edge.DisableKeyword("_COLOR");
+
+        if (enableEdges) Edge.EnableKeyword("_ENABLE");
+        else Edge.DisableKeyword("_ENABLE");
 
         Outline.SetFloat("_Outline_Threshold", outlineThreshold);
         Outline.SetColor("_Outline_Color", outlineColor);
         Outline.SetFloat("_Outline_Opacity", outlineOpacity);
+
+        if (enableOutlines) Outline.EnableKeyword("_ENABLE");
+        else Outline.DisableKeyword("_ENABLE");
     }
 
     private void OnValidate()
@@ -40,11 +48,27 @@ public class PostProcessManagerScript : MonoBehaviour
         Edge.SetColor("_Edge_Color", edgeColor);
         Edge.SetFloat("_Edge_Opacity", edgeOpacity);
 
-        if (color) Edge.EnableKeyword("_COLOR");
+        if (colorEdges) Edge.EnableKeyword("_COLOR");
         else Edge.DisableKeyword("_COLOR");
+
+
+        if (enableEdges) Edge.EnableKeyword("_ENABLE");
+        else Edge.DisableKeyword("_ENABLE");
 
         Outline.SetFloat("_Outline_Threshold", outlineThreshold);
         Outline.SetColor("_Outline_Color", outlineColor);
         Outline.SetFloat("_Outline_Opacity", outlineOpacity);
+
+        if (enableOutlines) Outline.EnableKeyword("_ENABLE");
+        else Outline.DisableKeyword("_ENABLE");
+    }
+
+    private void Update()
+    {
+        if (enableEdges) Edge.EnableKeyword("_ENABLE");
+        else Edge.DisableKeyword("_ENABLE");
+
+        if (enableOutlines) Outline.EnableKeyword("_ENABLE");
+        else Outline.DisableKeyword("_ENABLE");
     }
 }

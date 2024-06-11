@@ -8,20 +8,18 @@ public class PixelMovementCharacter : MonoBehaviour
     public PixelCameraBehavior pixelCameraBehavior;
     private Camera renderCamera;
     private float pixelSize;
-    private Vector3 preSnapPos;
     private CharacterController controller;
     private Vector3 camLocalcurrentPos;
     private Vector3 localSnappedPosition;
     private Vector3 snappedPosition;
-    private bool rotating;
     private Animator animator;
     Vector3 velocity;
     public float gravity = 9.8f;
+    [HideInInspector] public bool animationLock = false;
 
     private void Start()
     {
         renderCamera = pixelCameraBehavior.renderCamera;
-        preSnapPos = transform.position;
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
@@ -35,7 +33,7 @@ public class PixelMovementCharacter : MonoBehaviour
             pixelSize = pixelCameraBehavior.pixelSize;
         }
 
-        if (pixelCameraBehavior.rotating == false)
+        if (pixelCameraBehavior.rotating == false && animationLock == false)
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
@@ -72,7 +70,6 @@ public class PixelMovementCharacter : MonoBehaviour
 
             Vector3 currentPosition = transform.position;
 
-            preSnapPos = currentPosition;
 
             camLocalcurrentPos = renderCamera.transform.InverseTransformPoint(currentPosition);
 

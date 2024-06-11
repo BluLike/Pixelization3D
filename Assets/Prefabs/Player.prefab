@@ -654,6 +654,7 @@ GameObject:
   - component: {fileID: 1388321479738777395}
   - component: {fileID: 4768989496523462857}
   - component: {fileID: 2641834999717457372}
+  - component: {fileID: 6780982763475586575}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -739,12 +740,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 2
   pixelCameraBehavior: {fileID: 0}
-  pixelSize: 0
-  preSnapPos: {x: 0, y: 0, z: 0}
-  camLocalcurrentPos: {x: 0, y: 0, z: 0}
-  localSnappedPosition: {x: 0, y: 0, z: 0}
-  snappedPosition: {x: 0, y: 0, z: 0}
   gravity: 9.8
+--- !u!81 &6780982763475586575
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5687962215220666355}
+  m_Enabled: 1
 --- !u!1 &5701278573780602795
 GameObject:
   m_ObjectHideFlags: 0

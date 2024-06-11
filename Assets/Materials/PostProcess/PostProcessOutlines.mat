@@ -12,9 +12,9 @@ Material:
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
-  - _OVERLAY
+  m_ValidKeywords:
+  - _ENABLE
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -41,13 +41,14 @@ Material:
     m_Floats:
     - _Color_Threshold: 0.01
     - _Depth_Threshold: 0.01
+    - _ENABLE: 0
     - _Edge_Opacity: 1
     - _Edge_Threshold: 1.86
     - _Normal_Threshold: 1.13
     - _OVERLAY: 1
-    - _Outline_Opacity: 0
-    - _Outline_Threshold: 0.01
+    - _Outline_Opacity: 1
+    - _Outline_Threshold: 0.12
     m_Colors:
     - _Edge_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Outline_Color: {r: 0.08265575, g: 0.09046191, b: 0.17735851, a: 1}
+    - _Outline_Color: {r: 0, g: 0, b: 0, a: 1}
   m_BuildTextureStacks: []
