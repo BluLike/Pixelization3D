@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hogar.unity
     guid: af1bc19bd7942de499f65fdba399e81c
+  - enabled: 1
+    path: Assets/Scenes/Final.unity
+    guid: ae1dc6c3c2f27524a9fe4dde29d00f3c
   m_configObjects: {}

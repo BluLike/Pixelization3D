@@ -33,7 +33,7 @@ public class PixelMovementCharacter : MonoBehaviour
             pixelSize = pixelCameraBehavior.pixelSize;
         }
 
-        if (pixelCameraBehavior.rotating == false && animationLock == false)
+        if (pixelCameraBehavior.rotating == false && animationLock == false && PauseMenuBehavior.isPaused == false)
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
